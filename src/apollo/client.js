@@ -8,7 +8,7 @@ const cache = new InMemoryCache()
 
 export const client = new ApolloClient({
   disableOffline: true,
-  uri: "http://localhost:4000",
+  uri: "https://food-web-app-graphql-yoga.herokuapp.com/",
   fetch,
   request: operation => {
     const token = localStorage.getItem(AUTH_TOKEN)
