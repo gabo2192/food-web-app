@@ -107,7 +107,7 @@ const Grid = styled.div`
   height: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  @media (min-width: 1024px){
+  @media (min-width: 1024px) {
     grid-template-columns: 1fr 1fr;
   }
 `
@@ -141,7 +141,13 @@ const Promo = ({ data }) => {
   const [secondSelect, setSecondSelect] = useState([])
   const [addCart] = useMutation(ADD_CART_MUTATION)
   const [toggleCart] = useMutation(TOGGLE_CART_MUTATION)
-  const authToken = localStorage.getItem(AUTH_TOKEN)
+  let authToken = null
+  useEffect(
+    () => authToken => {
+      localStorage.getItem(AUTH_TOKEN)
+    },
+    []
+  )
   const productDescription = `${itemsFixed.map(
     item => item.title
   )}, ${firstSelect}, ${secondSelect}`
@@ -167,10 +173,7 @@ const Promo = ({ data }) => {
       <Grid>
         <PromoIntro>
           <Heading>{title}</Heading>
-          <StyledImg
-            className="main"
-            fluid={promoImage.fluid}
-          />
+          <StyledImg className="main" fluid={promoImage.fluid} />
           <PromoText>{description}</PromoText>
         </PromoIntro>
         <Scroll>

@@ -66,7 +66,13 @@ const Product = props => {
   const { data, loading } = useQuery(CURRENT_USER_QUERY)
   const [addToCart] = useMutation(ADD_CART_MUTATION)
   const [toggleCart] = useMutation(TOGGLE_CART_MUTATION)
-  const authToken = localStorage.getItem(AUTH_TOKEN)
+  let authToken = null
+  useEffect(
+    () => authToken => {
+      localStorage.getItem(AUTH_TOKEN)
+    },
+    []
+  )
   const update = (cache, payload) => {
     //first read the cache
     const data = cache.readQuery({ query: CURRENT_USER_QUERY })

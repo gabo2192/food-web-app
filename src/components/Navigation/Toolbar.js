@@ -91,7 +91,13 @@ const Toolbar = props => {
       }
     }
   `)
-  const authToken = localStorage.getItem(AUTH_TOKEN)
+  let authToken = null
+  useEffect(
+    () => authToken => {
+      localStorage.getItem(AUTH_TOKEN)
+    },
+    []
+  )
 
   const beforeData = (
     <Header active={props.open}>
@@ -143,7 +149,6 @@ const Toolbar = props => {
                   (tally, cartItem) => tally + cartItem.quantity,
                   0
                 )}
-                
               </NumberItems>
             )}
           </a>

@@ -52,7 +52,6 @@ export const TOGGLE_MODAL_MUTATION = gql`
 const Main = styled.main`
   margin-top: 56px;
   min-height: calc(100vh - 112px);
-  
 `
 
 const Layout = ({ children }) => {
@@ -60,7 +59,13 @@ const Layout = ({ children }) => {
 
   const [toggleMenu] = useMutation(TOGGLE_MENU_MUTATION)
   const [toggleCart] = useMutation(TOGGLE_CART_MUTATION)
-  const authToken = localStorage.getItem(AUTH_TOKEN)
+  let authToken = null
+  useEffect(
+    () => authToken => {
+      localStorage.getItem(AUTH_TOKEN)
+    },
+    []
+  )
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle open={data.cartOpen || data.menuOpen || data.modalOpen} />
@@ -71,7 +76,9 @@ const Layout = ({ children }) => {
         cartOpen={data.cartOpen}
       />
       <SideDrawer open={data.menuOpen} drawerToggleClicked={toggleMenu} />
-      {authToken && <Cart open={data.cartOpen} drawerToggleCart={toggleCart} fixed/>}
+      {authToken && (
+        <Cart open={data.cartOpen} drawerToggleCart={toggleCart} fixed />
+      )}
       <div>
         <Main>{children}</Main>
         <Footer />

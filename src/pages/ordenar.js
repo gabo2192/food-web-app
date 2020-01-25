@@ -8,15 +8,15 @@ import Orders from "../components/Order/Orders"
 import Login from "../components/Login/Login"
 import { AUTH_TOKEN } from "../apollo/constants"
 
-
-
 const ordenarPage = props => {
-    const authToken = localStorage.getItem(AUTH_TOKEN)
-  return (
-    <Layout>
-      {authToken ? <Orders /> : <Login /> }
-    </Layout>
+  let authToken = null
+  useEffect(
+    () => authToken => {
+      localStorage.getItem(AUTH_TOKEN)
+    },
+    []
   )
+  return <Layout>{authToken ? <Orders /> : <Login />}</Layout>
 }
 
 export default ordenarPage

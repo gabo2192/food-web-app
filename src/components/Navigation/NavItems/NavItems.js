@@ -16,7 +16,13 @@ const Nav = styled.nav`
 `
 
 const NavItems = props => {
-  const authToken = localStorage.getItem(AUTH_TOKEN)
+  let authToken = null
+  useEffect(
+    () => authToken => {
+      localStorage.getItem(AUTH_TOKEN)
+    },
+    []
+  )
   return (
     <Nav>
       <NavItem clicked={props.clicked} link="/">
