@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Link, useStaticQuery, graphql, navigate } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"

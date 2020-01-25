@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import { useMutation } from "@apollo/react-hooks"
 import Img from "gatsby-image"
