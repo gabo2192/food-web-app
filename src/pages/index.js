@@ -1,21 +1,67 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
+import Hero from "../components/Hero/Hero"
 import SEO from "../components/seo"
+import Promos from "../components/Promos/Promos"
+import Menu from "../components/Menu/Menu"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+const IndexPage = () => {
+  const data = useStaticQuery(graphql`
+    query HomeQuery {
+      contentfulHome {
+        featurePromos {
+          id
+          title
+          slug
+          description
+          promoImage {
+            fluid(maxWidth:2000) {
+              ...GatsbyContentfulFluid_withWebp
+            }
+          }
+          promoPrice
+        }
+        promos {
+          id
+          title
+          slug
+          description
+          quantity
+          promoImage {
+            fluid(maxWidth:2000) {
+              ...GatsbyContentfulFluid_withWebp
+            }
+          }
+          promoPrice
+        }
+        menu {
+          id
+          title
+          slug
+          categoryImage {
+            fluid (maxWidth:2000){
+              ...GatsbyContentfulFluid_withWebp
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  const featuredPromos = data.contentfulHome.featurePromos
+  const promos = data.contentfulHome.promos
+  const menu = data.contentfulHome.menu
+
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <Hero featured={featuredPromos}/>
+      <Promos title="Promociones" promos={promos}/>
+      <Menu menu={menu}/>
+    </Layout>
+  )
+}
 
 export default IndexPage
