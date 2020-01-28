@@ -1,9 +1,6 @@
-import React, { useState } from "react"
-import { useQuery, useMutation } from "@apollo/react-hooks"
-import { gql } from "graphql-tag"
+import React, { useState, useEffect } from "react"
 
 import Layout from "../components/layout"
-import Spinner from "../components/UI/spinner"
 import Orders from "../components/Order/Orders"
 import Login from "../components/Login/Login"
 import { AUTH_TOKEN } from "../apollo/constants"
