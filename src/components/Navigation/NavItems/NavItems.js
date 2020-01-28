@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { navigate } from "gatsby"
 
@@ -16,13 +16,13 @@ const Nav = styled.nav`
 `
 
 const NavItems = props => {
-  let authToken = null
-  useEffect(
-    () => authToken => {
-      localStorage.getItem(AUTH_TOKEN)
-    },
-    []
-  )
+  const [authToken, setAuthToken] = useState(undefined)
+  useEffect(() => {
+    setAuthToken(localStorage.getItem(AUTH_TOKEN))
+  }, [])
+  const signOut = () => {
+    
+  }
   return (
     <Nav>
       <NavItem clicked={props.clicked} link="/">

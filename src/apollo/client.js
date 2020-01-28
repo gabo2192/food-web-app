@@ -8,7 +8,7 @@ const cache = new InMemoryCache()
 
 export const client = new ApolloClient({
   disableOffline: true,
-  uri: "https://food-web-app-graphql-yoga.herokuapp.com/",
+  uri: "https://fwa-backend-9cf60c10ef.herokuapp.com/fwabackend/prod",
   fetch,
   request: operation => {
     const token = localStorage.getItem(AUTH_TOKEN)
@@ -19,8 +19,8 @@ export const client = new ApolloClient({
     })
   },
   cache,
-  connectToDevTools: true,
-  clientState: {
+/*   connectToDevTools: true,
+ */  clientState: {
     resolvers: {
       Mutation: {
         toggleMenu(_, variables, { cache }) {
@@ -61,6 +61,16 @@ export const client = new ApolloClient({
           })
           const data = {
             data: { ...data, orderId: id, __typename: "OrderId" },
+          }
+          cache.writeData(data)
+          return data
+        },
+        authToken(_, { token }, { cache }) {
+          const { authToken } = cache.readQuery({
+            query: LOCAL_STATE_QUERY,
+          })
+          const data = {
+            data: { ...data, authToken: token, __typename: "Auth Token" },
           }
           cache.writeData(data)
           return data

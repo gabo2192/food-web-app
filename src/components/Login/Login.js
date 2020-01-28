@@ -149,6 +149,7 @@ class Login extends Component {
           {mutation => (
             <div className="button" onClick={mutation} >
               {login ? "Ingresa" : "Registrate"}
+              {console.log(mutation)}
             </div>
           )}
         </Mutation>

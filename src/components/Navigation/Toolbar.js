@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Link, useStaticQuery, graphql, navigate } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
@@ -91,13 +91,10 @@ const Toolbar = props => {
       }
     }
   `)
-  let authToken = null
-  useEffect(
-    () => authToken => {
-      localStorage.getItem(AUTH_TOKEN)
-    },
-    []
-  )
+  const [authToken, setAuthToken] = useState(undefined)
+  useEffect(() => {
+    setAuthToken(localStorage.getItem(AUTH_TOKEN))
+  }, [])
 
   const beforeData = (
     <Header active={props.open}>

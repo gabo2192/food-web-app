@@ -141,13 +141,11 @@ const Promo = ({ data }) => {
   const [secondSelect, setSecondSelect] = useState([])
   const [addCart] = useMutation(ADD_CART_MUTATION)
   const [toggleCart] = useMutation(TOGGLE_CART_MUTATION)
-  let authToken = null
-  useEffect(
-    () => authToken => {
-      localStorage.getItem(AUTH_TOKEN)
-    },
-    []
-  )
+  const [authToken, setAuthToken] = useState(undefined)
+  useEffect(() => {
+    setAuthToken(localStorage.getItem(AUTH_TOKEN))
+  }, [])
+
   const productDescription = `${itemsFixed.map(
     item => item.title
   )}, ${firstSelect}, ${secondSelect}`

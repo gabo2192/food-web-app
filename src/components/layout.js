@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { useEffect }from "react"
+import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import { useQuery, useMutation } from "@apollo/react-hooks"
 import styled, { ThemeProvider } from "styled-components"
@@ -59,13 +59,11 @@ const Layout = ({ children }) => {
 
   const [toggleMenu] = useMutation(TOGGLE_MENU_MUTATION)
   const [toggleCart] = useMutation(TOGGLE_CART_MUTATION)
-  let authToken = null
-  useEffect(
-    () => authToken => {
-      localStorage.getItem(AUTH_TOKEN)
-    },
-    []
-  )
+  const [authToken, setAuthToken] = useState(undefined)
+  useEffect(() => {
+    setAuthToken(localStorage.getItem(AUTH_TOKEN))
+  }, [])
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle open={data.cartOpen || data.menuOpen || data.modalOpen} />

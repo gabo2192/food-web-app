@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Link, navigate } from "gatsby"
 import gql from "graphql-tag"
@@ -47,13 +47,11 @@ const GridHeading = styled.div`
 const Cart = props => {
   const { loading, error, data } = useQuery(CURRENT_USER_QUERY)
   const [toggleCart] = useMutation(TOGGLE_CART_MUTATION)
-  let authToken = null
-  useEffect(
-    () => authToken => {
-      localStorage.getItem(AUTH_TOKEN)
-    },
-    []
-  )
+  const [authToken, setAuthToken] = useState(undefined)
+  useEffect(() => {
+    setAuthToken(localStorage.getItem(AUTH_TOKEN))
+  }, [])
+
   if (loading) return null
 
   let total = 0

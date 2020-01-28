@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useState } from "react"
 import { useQuery, useMutation } from "@apollo/react-hooks"
 import { gql } from "graphql-tag"
 
@@ -9,13 +9,11 @@ import Login from "../components/Login/Login"
 import { AUTH_TOKEN } from "../apollo/constants"
 
 const ordenarPage = props => {
-  let authToken = null
-  useEffect(
-    () => authToken => {
-      localStorage.getItem(AUTH_TOKEN)
-    },
-    []
-  )
+  const [authToken, setAuthToken] = useState(undefined)
+  useEffect(() => {
+    setAuthToken(localStorage.getItem(AUTH_TOKEN))
+  }, [])
+
   return <Layout>{authToken ? <Orders /> : <Login />}</Layout>
 }
 
