@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import { AUTH_TOKEN } from "../apollo/constants"
 import Layout from "../components/layout"
