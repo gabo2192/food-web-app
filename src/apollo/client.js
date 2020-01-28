@@ -1,4 +1,4 @@
-import ApolloClient, { HttpLink, concat } from "apollo-boost"
+import ApolloClient from "apollo-boost"
 import fetch from "isomorphic-fetch"
 import { InMemoryCache } from "apollo-cache-inmemory"
 import { LOCAL_STATE_QUERY } from "../components/layout"

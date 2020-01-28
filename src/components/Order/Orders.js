@@ -98,7 +98,7 @@ const Orders = props => {
           primary
           clicked={() => {
             createOrder({
-              refetchQueries: [{ query: USER_ORDERS_QUERY }],
+              refetchQueries: [{ query: USER_ORDERS_QUERY }, {query: CURRENT_USER_QUERY}],
             }),
               navigate("/pedidos")
           }}
