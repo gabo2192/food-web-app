@@ -34,7 +34,6 @@ export const Form = styled.form`
     box-sizing: border-box;
     width: 100%;
     border-radius: 4px;
-    border: 1px solid white;
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
     font-size: 1rem;
