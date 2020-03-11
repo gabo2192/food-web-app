@@ -101,7 +101,7 @@ const Ingredients = styled.div`
 const PromoIntro = styled.div``
 
 const Grid = styled.div`
-  height: 100%;
+  height: 100vh;
   display: grid;
   max-width: 1200px;
   margin: 0 auto;
