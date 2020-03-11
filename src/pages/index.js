@@ -17,7 +17,7 @@ const IndexPage = () => {
           slug
           description
           promoImage {
-            fluid(maxWidth:2000) {
+            fluid(maxWidth: 1600, maxHeight: 900) {
               ...GatsbyContentfulFluid_withWebp
             }
           }
@@ -30,7 +30,7 @@ const IndexPage = () => {
           description
           quantity
           promoImage {
-            fluid(maxWidth:2000) {
+            fluid(maxWidth: 2000) {
               ...GatsbyContentfulFluid_withWebp
             }
           }
@@ -41,7 +41,7 @@ const IndexPage = () => {
           title
           slug
           categoryImage {
-            fluid (maxWidth:2000){
+            fluid(maxWidth: 2000) {
               ...GatsbyContentfulFluid_withWebp
             }
           }
@@ -57,9 +57,9 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO title="Home" />
-      <Hero featured={featuredPromos}/>
-      <Promos title="Promociones" promos={promos}/>
-      <Menu menu={menu}/>
+      <Hero featured={featuredPromos} />
+      <Promos title="Promociones" promos={promos} />
+      <Menu menu={menu} />
     </Layout>
   )
 }

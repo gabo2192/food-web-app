@@ -86,9 +86,7 @@ const StyledImg = styled(Img)`
   height: 100%;
   max-height: 300px;
   pointer-events: none;
-  @media (min-width: 1024px) {
-    max-height: 100%;
-  }
+
 `
 
 const Ingredients = styled.div`
@@ -103,19 +101,24 @@ const Ingredients = styled.div`
 const PromoIntro = styled.div``
 
 const Grid = styled.div`
-  display: grid;
   height: 100%;
+  display: grid;
   max-width: 1200px;
   margin: 0 auto;
   @media (min-width: 1024px) {
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 80vh;
   }
 `
 
 const Scroll = styled.div`
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: ${props => props.theme.primaryColor};
+  }
   @media (min-width: 1024px) {
     margin-top: 56px;
-    height: calc(100vh - 200px);
     overflow-x: hidden;
     overflow-y: scroll;
   }
@@ -173,8 +176,6 @@ const Promo = ({ data }) => {
           <Heading>{title}</Heading>
           <StyledImg className="main" fluid={promoImage.fluid} />
           <PromoText>{description}</PromoText>
-        </PromoIntro>
-        <Scroll>
           <Ingredients>
             {itemsFixed.map(ingredient => (
               <BoxButton key={ingredient.id}>
@@ -186,6 +187,8 @@ const Promo = ({ data }) => {
               </BoxButton>
             ))}
           </Ingredients>
+        </PromoIntro>
+        <Scroll>
           {select1 && (
             <>
               {!firstSelect ? (

@@ -48,6 +48,9 @@ const HeroText = styled.div`
   @media (min-width: 1024px) {
     top: 30%;
     height: 60%;
+    width: 80%;
+    left: 10%;
+    border-radius: 1rem;
     & > p.button {
       width: 50%;
     }

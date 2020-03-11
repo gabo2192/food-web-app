@@ -52,6 +52,9 @@ export const TOGGLE_MODAL_MUTATION = gql`
 const Main = styled.main`
   margin-top: 56px;
   min-height: calc(100vh - 112px);
+  @media (min-width: 1024px) {
+    margin-top: 80px;
+  }
 `
 
 const Layout = ({ children }) => {

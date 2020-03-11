@@ -14,40 +14,46 @@ export const Form = styled.form`
   color: white;
   min-height: calc(100vh - 56px);
   padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  & > label {
-    line-height: 2;
-    text-align: left;
-    display: block;
-    margin-bottom: 1rem;
-    margin-top: 1.2rem;
-    color: white;
-    font-size: 1rem;
-    font-weight: 200;
-    margin-left: 1rem;
-  }
-  & > input,
-  textarea {
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    border-radius: 4px;
-    padding: 0.5rem 1rem;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-  }
-  & > .button {
-    background: ${props => props.theme.primaryColor};
-    color: white;
-    text-transform: uppercase;
-    border: none;
-    margin-top: 40px;
-    padding: 1rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    text-align: center;
+
+  & > fieldset {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: transparent;
+    max-width: 600px;
+    margin: 0 auto;
+    & > label {
+      line-height: 2;
+      text-align: left;
+      display: block;
+      margin-bottom: 1rem;
+      margin-top: 1.2rem;
+      color: white;
+      font-size: 1rem;
+      font-weight: 200;
+      margin-left: 1rem;
+    }
+    & > input,
+    textarea {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    & > .button {
+      background: ${props => props.theme.primaryColor};
+      color: white;
+      text-transform: uppercase;
+      border: none;
+      margin-top: 40px;
+      padding: 1rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      text-align: center;
+    }
   }
 `
 const SIGNUP_MUTATION = gql`
@@ -91,74 +97,76 @@ class Login extends Component {
     const { login, email, password, name, phone, address } = this.state
     return (
       <Form onSubmit={e => e.preventDefault()}>
-        <Heading>{login ? "Ingresa" : "Registrate"}</Heading>
-        {!login && (
-          <>
-            <label htmlFor="name">Nombre:</label>
-            <input
-              type="text"
-              name="name"
-              required
-              value={name}
-              onChange={e => this.setState({ name: e.target.value })}
-            />
-          </>
-        )}
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          name="email"
-          required
-          value={email}
-          onChange={e => this.setState({ email: e.target.value })}
-        />
-        <label htmlFor="email">Contraseña</label>
-        <input
-          type="password"
-          name="password"
-          required
-          value={password}
-          onChange={e => this.setState({ password: e.target.value })}
-        />
-        {!login && (
-          <>
-            <label htmlFor="phone">Teléfono:</label>
-            <input
-              type="number"
-              name="phone"
-              required
-              value={phone}
-              onChange={e => this.setState({ phone: e.target.value })}
-            />
-            <label htmlFor="address">Dirección:</label>
-            <textarea
-              type="text"
-              name="address"
-              required
-              value={address}
-              onChange={e => this.setState({ address: e.target.value })}
-            />
-          </>
-        )}
-        <Mutation
-          mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
-          variables={{ email, password, name, phone, address }}
-          onCompleted={data => this._confirm(data)}
-        >
-          {mutation => (
-            <div className="button" onClick={mutation} >
-              {login ? "Ingresa" : "Registrate"}
-              {console.log(mutation)}
-            </div>
+        <fieldset>
+          <Heading>{login ? "Ingresa" : "Registrate"}</Heading>
+          {!login && (
+            <>
+              <label htmlFor="name">Nombre:</label>
+              <input
+                type="text"
+                name="name"
+                required
+                value={name}
+                onChange={e => this.setState({ name: e.target.value })}
+              />
+            </>
           )}
-        </Mutation>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            name="email"
+            required
+            value={email}
+            onChange={e => this.setState({ email: e.target.value })}
+          />
+          <label htmlFor="email">Contraseña</label>
+          <input
+            type="password"
+            name="password"
+            required
+            value={password}
+            onChange={e => this.setState({ password: e.target.value })}
+          />
+          {!login && (
+            <>
+              <label htmlFor="phone">Teléfono:</label>
+              <input
+                type="number"
+                name="phone"
+                required
+                value={phone}
+                onChange={e => this.setState({ phone: e.target.value })}
+              />
+              <label htmlFor="address">Dirección:</label>
+              <textarea
+                type="text"
+                name="address"
+                required
+                value={address}
+                onChange={e => this.setState({ address: e.target.value })}
+              />
+            </>
+          )}
+          <Mutation
+            mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
+            variables={{ email, password, name, phone, address }}
+            onCompleted={data => this._confirm(data)}
+          >
+            {mutation => (
+              <div className="button" onClick={mutation}>
+                {login ? "Ingresa" : "Registrate"}
+                {console.log(mutation)}
+              </div>
+            )}
+          </Mutation>
 
-        <div
-          className="button"
-          onClick={() => this.setState({ login: !login })}
-        >
-          {login ? "¿Necesitas crear una cuenta?" : "¿Ya tienes una cuenta?"}
-        </div>
+          <div
+            className="button"
+            onClick={() => this.setState({ login: !login })}
+          >
+            {login ? "¿Necesitas crear una cuenta?" : "¿Ya tienes una cuenta?"}
+          </div>
+        </fieldset>
       </Form>
     )
   }

@@ -30,6 +30,8 @@ const CREATE_ORDER_MUTATION = gql`
 const Container = styled.div`
   padding: 1rem;
   text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
   & > div {
     text-align: left;
   }
@@ -38,6 +40,7 @@ const Container = styled.div`
   }
   & > .price {
   }
+
 `
 
 const Orders = props => {
